@@ -11,7 +11,18 @@ HEADERS += include/naoqi_driver/*.h \
            include/naoqi_driver/service/*.h \
            include/naoqi_driver/service/*.hpp \
            include/naoqi_driver/subscriber/*.h \
-           include/naoqi_driver/subscriber/*.hpp
+           include/naoqi_driver/subscriber/*.hpp \
+           src/*.hpp \
+           src/converter/*.hpp \
+           src/tools/*.hpp \
+           src/helpers/*.hpp \
+           src/publishers/*.hpp \
+           src/services/*.hpp \
+           src/event/*.hpp \
+           src/converter/*.hpp \
+           src/recorder/*.hpp \
+           src/subscribers/*.hpp \
+
 
 SOURCES = src/*.cpp \
           src/converters/*.cpp \
@@ -24,6 +35,4 @@ SOURCES = src/*.cpp \
           src/subscribers/*.cpp \
 
 INCLUDEPATH += include/ \
-               /opt/ros/indigo/include/  \
-               ../tabasco_base/include/
-
+               /opt/ros/indigo/include/
