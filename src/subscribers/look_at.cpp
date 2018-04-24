@@ -52,29 +52,42 @@ void LookAtSubscriber::reset(ros::NodeHandle &nh) {
 
 
 void LookAtSubscriber::callback(
-        const geometry_msgs::PoseStampedConstPtr &pose_stamped_msg) {
+        const naoqi_bridge_msgs::PoseStampedWithSpeedConstPtr &msg) {
 
     int                frame;
+    float              speedPercentage;
     std::vector<float> position;
 
-    if (pose_stamped_msg->header.frame_id == "torso")
+    speedPercentage = msg->speed_percentage;
+
+    if (speedPercentage < 0)
+        speedPercentage = 0;
+
+    else if (speedPercentage > 1)
+        speedPercentage = 1;
+
+    if (msg->pose_stamped.header.frame_id == "torso")
         frame = 0;
 
-    else if (pose_stamped_msg->header.frame_id == "base_link")
+    else if (msg->pose_stamped.header.frame_id == "base_link")
         frame = 2;
 
-    else if (pose_stamped_msg->header.frame_id == "odom")
+    else if (msg->pose_stamped.header.frame_id == "odom")
         frame = 1;
 
     else
         frame = -1;
 
     if (frame != -1) {
-        position.push_back(pose_stamped_msg->pose.position.x);
-        position.push_back(pose_stamped_msg->pose.position.y);
-        position.push_back(pose_stamped_msg->pose.position.z);
+        position.push_back(msg->pose_stamped.pose.position.x);
+        position.push_back(msg->pose_stamped.pose.position.y);
+        position.push_back(msg->pose_stamped.pose.position.z);
 
-        this->p_tracker_.async<void>("lookAt", position, frame, 0.2);
+        this->p_tracker_.async<void>("lookAt",
+                                     position,
+                                     frame,
+                                     speedPercentage,
+                                     false);
     }
 
     else {
@@ -82,29 +95,36 @@ void LookAtSubscriber::callback(
 
         bool canTransform = this->tf2_buffer_->canTransform(
                     "torso",
-                    pose_stamped_msg->header.frame_id,
+                    msg->pose_stamped.header.frame_id,
                     ros::Time(0),
                     ros::Duration(2));
 
         if (!canTransform) {
             std::cout << "Cannot transform from "
-                      << pose_stamped_msg->header.frame_id
+                      << msg->pose_stamped.header.frame_id
                       << " to torso" << std::endl;
             return;
         }
 
         try {
-            this->tf2_buffer_->transform(*pose_stamped_msg,
+            geometry_msgs::PoseStamped poseStamped;
+            poseStamped = msg->pose_stamped;
+
+            this->tf2_buffer_->transform(poseStamped,
                                          pose_msg_bf,
                                          "torse",
                                          ros::Time(0),
-                                         pose_stamped_msg->header.frame_id);
+                                         msg->pose_stamped.header.frame_id);
 
             position.push_back(pose_msg_bf.pose.position.x);
             position.push_back(pose_msg_bf.pose.position.y);
             position.push_back(pose_msg_bf.pose.position.z);
 
-            this->p_tracker_.async<void>("lookAt", position, 0, 0.2);
+            this->p_tracker_.async<void>("lookAt",
+                                         position,
+                                         0,
+                                         speedPercentage,
+                                         false);
 
         } catch (const tf2::LookupException &e) {
             std::cout << e.what() << std::endl;

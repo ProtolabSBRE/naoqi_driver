@@ -880,7 +880,7 @@ void Driver::registerDefaultSubscriber()
     return;
   registerSubscriber( boost::make_shared<naoqi::subscriber::TeleopSubscriber>("teleop", "/cmd_vel", "/joint_angles", sessionPtr_) );
   registerSubscriber( boost::make_shared<naoqi::subscriber::MovetoSubscriber>("moveto", "/move_base_simple/goal", sessionPtr_, tf2_buffer_) );
-  registerSubscriber(boost::make_shared<naoqi::subscriber::LookAtSubscriber>("lookat", "look_at/goal", sessionPtr_, tf2_buffer_) );
+  registerSubscriber(boost::make_shared<naoqi::subscriber::LookAtSubscriber>("lookat", "/look_at/goal", sessionPtr_, tf2_buffer_) );
   registerSubscriber( boost::make_shared<naoqi::subscriber::SpeechSubscriber>("speech", "/speech", sessionPtr_) );
 }
 
