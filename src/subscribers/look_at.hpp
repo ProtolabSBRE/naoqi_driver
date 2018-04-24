@@ -28,6 +28,7 @@
  * ROS includes
  */
 #include <ros/ros.h>
+#include <naoqi_bridge_msgs/PoseStampedWithSpeed.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <tf2_ros/buffer.h>
 
@@ -47,7 +48,7 @@ public:
   ~LookAtSubscriber(){}
 
   void reset(ros::NodeHandle &nh);
-  void callback(const geometry_msgs::PoseStampedConstPtr &pose_stamped_msg);
+  void callback(const naoqi_bridge_msgs::PoseStampedWithSpeedConstPtr &msg);
 
 private:
   qi::AnyObject                      p_tracker_;
