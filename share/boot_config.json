@@ -1,5 +1,5 @@
-/* QQVGA = 0, QVGA = 1, VGA =2 */
 {
+  "_comment": "QQVGA = 0, QVGA = 1, VGA = 2",
   "converters":
   {
     "front_camera":
@@ -37,7 +37,7 @@
     },
     "logs":
     {
-      "enabled"       : true,
+      "enabled"       : false,
       "frequency"     : 1
     },
     "diag":
