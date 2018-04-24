@@ -58,10 +58,12 @@ void LookAtSubscriber::callback(
     float              speedPercentage;
     std::vector<float> position;
 
-    if (msg->speed_percentage < 0)
+    speedPercentage = msg->speed_percentage;
+
+    if (speedPercentage < 0)
         speedPercentage = 0;
 
-    else if (msg->speed_percentage > 1)
+    else if (speedPercentage > 1)
         speedPercentage = 1;
 
     if (msg->pose_stamped.header.frame_id == "torso")
@@ -84,7 +86,8 @@ void LookAtSubscriber::callback(
         this->p_tracker_.async<void>("lookAt",
                                      position,
                                      frame,
-                                     speedPercentage);
+                                     speedPercentage,
+                                     false);
     }
 
     else {
@@ -120,7 +123,8 @@ void LookAtSubscriber::callback(
             this->p_tracker_.async<void>("lookAt",
                                          position,
                                          0,
-                                         speedPercentage);
+                                         speedPercentage,
+                                         false);
 
         } catch (const tf2::LookupException &e) {
             std::cout << e.what() << std::endl;
