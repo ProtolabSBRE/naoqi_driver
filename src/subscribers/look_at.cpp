@@ -112,7 +112,7 @@ void LookAtSubscriber::callback(
 
             this->tf2_buffer_->transform(poseStamped,
                                          pose_msg_bf,
-                                         "torse",
+	                                 "torso",
                                          ros::Time(0),
                                          msg->pose_stamped.header.frame_id);
 
