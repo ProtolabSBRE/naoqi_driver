@@ -22,6 +22,16 @@ HEADERS += include/naoqi_driver/*.h \
            src/converter/*.hpp \
            src/recorder/*.hpp \
            src/subscribers/*.hpp \
+           src/*.h \
+           src/converter/*.h \
+           src/tools/*.h \
+           src/helpers/*.h \
+           src/publishers/*.h \
+           src/services/*.h \
+           src/event/*.h \
+           src/converter/*.h \
+           src/recorder/*.h \
+           src/subscribers/*.h \
 
 
 SOURCES = src/*.cpp \
