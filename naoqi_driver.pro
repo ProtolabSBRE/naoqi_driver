@@ -13,7 +13,7 @@ HEADERS += include/naoqi_driver/*.h \
            include/naoqi_driver/subscriber/*.h \
            include/naoqi_driver/subscriber/*.hpp \
            src/*.hpp \
-           src/converter/*.hpp \
+           src/converters/*.hpp \
            src/tools/*.hpp \
            src/helpers/*.hpp \
            src/publishers/*.hpp \
@@ -23,7 +23,7 @@ HEADERS += include/naoqi_driver/*.h \
            src/recorder/*.hpp \
            src/subscribers/*.hpp \
            src/*.h \
-           src/converter/*.h \
+           src/converters/*.h \
            src/tools/*.h \
            src/helpers/*.h \
            src/publishers/*.h \
