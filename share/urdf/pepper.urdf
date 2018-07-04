@@ -64,7 +64,8 @@
     <child link="Hip"/>
     <origin rpy="0 0 0" xyz="2e-05 0 -0.139"/>
     <axis xyz="1.0 0 0"/>
-    <limit effort="10.1884" lower="-0.514872" upper="0.514872" velocity="2.27032"/>
+    <!-- <limit effort="10.1884" lower="-0.514872" upper="0.514872" velocity="2.27032"/> -->
+    <limit effort="10.1884" lower="-0.257" upper="0.257" velocity="2.27032"/>
   </joint>
   <link name="Hip">
     <inertial>
@@ -90,7 +91,8 @@
     <child link="Pelvis"/>
     <origin rpy="0 0 0" xyz="0 0 -0.079"/>
     <axis xyz="0 1.0 0"/>
-    <limit effort="19.787" lower="-1.03847" upper="1.03847" velocity="2.93276"/>
+    <!-- <limit effort="19.787" lower="-1.03847" upper="1.03847" velocity="2.93276"/> -->
+    <limit effort="19.787" lower="-0.346" upper="0.346" velocity="2.93276"/>
   </joint>
   <link name="Pelvis">
     <inertial>
@@ -116,7 +118,8 @@
     <child link="Tibia"/>
     <origin rpy="0 0 0" xyz="0 0 -0.268"/>
     <axis xyz="0 1.0 0"/>
-    <limit effort="27.702" lower="-0.514872" upper="0.514872" velocity="2.93276"/>
+    <!-- <limit effort="27.702" lower="-0.514872" upper="0.514872" velocity="2.93276"/> -->
+    <limit effort="27.702" lower="-0.1716" upper="0.1716" velocity="2.93276"/>
   </joint>
   <link name="Tibia">
     <inertial>
