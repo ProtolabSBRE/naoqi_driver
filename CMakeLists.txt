@@ -40,6 +40,7 @@ set(
   SUBSCRIBER_SRC
   src/subscribers/teleop.cpp
   src/subscribers/moveto.cpp
+  src/subscribers/kill_move.cpp
   src/subscribers/speech.cpp
   src/subscribers/look_at.cpp
   )
