@@ -29,7 +29,9 @@
  */
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <naoqi_bridge_msgs/PoseStampedWithSpeed.h>
 #include <tf2_ros/buffer.h>
+#include <qi/anyvalue.hpp>
 
 namespace naoqi
 {
@@ -39,11 +41,15 @@ namespace subscriber
 class MovetoSubscriber: public BaseSubscriber<MovetoSubscriber>
 {
 public:
-  MovetoSubscriber( const std::string& name, const std::string& topic, const qi::SessionPtr& session, const boost::shared_ptr<tf2_ros::Buffer>& tf2_buffer );
+  MovetoSubscriber(const std::string& name,
+                   const std::string& topic,
+                   const qi::SessionPtr& session,
+                   const boost::shared_ptr<tf2_ros::Buffer>& tf2_buffer);
+
   ~MovetoSubscriber(){}
 
   void reset( ros::NodeHandle& nh );
-  void callback( const geometry_msgs::PoseStampedConstPtr& pose_msg );
+  void callback( const naoqi_bridge_msgs::PoseStampedWithSpeedConstPtr &msg);
 
 private:
   qi::AnyObject p_motion_;
