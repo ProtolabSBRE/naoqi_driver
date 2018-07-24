@@ -33,18 +33,23 @@ namespace naoqi
 namespace subscriber
 {
 
-MovetoSubscriber::MovetoSubscriber( const std::string& name, const std::string& topic, const qi::SessionPtr& session,
-                                    const boost::shared_ptr<tf2_ros::Buffer>& tf2_buffer):
+MovetoSubscriber::MovetoSubscriber(
+        const std::string& name,
+        const std::string& topic,
+        const qi::SessionPtr& session,
+        const boost::shared_ptr<tf2_ros::Buffer>& tf2_buffer):
   BaseSubscriber( name, topic, session ),
   p_motion_( session->service("ALMotion") ),
   tf2_buffer_( tf2_buffer )
 {}
+
 
 void MovetoSubscriber::reset( ros::NodeHandle& nh )
 {
   sub_moveto_ = nh.subscribe( topic_, 10, &MovetoSubscriber::callback, this );
   is_initialized_ = true;
 }
+
 
 void MovetoSubscriber::callback(
         const naoqi_bridge_msgs::PoseStampedWithSpeedConstPtr &msg) {
@@ -55,47 +60,33 @@ void MovetoSubscriber::callback(
     speed = msg->speed_percentage * 0.45 + 0.1;
     moveConfig.push_back(std::make_pair("MaxVelXY", speed));
 
-    if (msg->pose_stamped.header.frame_id == "base_footprint") {
-
-        double yaw = helpers::transform::getYaw(msg->pose_stamped.pose);
-
-        std::cout << "going to move x: "
-                  <<  msg->pose_stamped.pose.position.x
-                   << " y: " << msg->pose_stamped.pose.position.y
-                   << " z: " << msg->pose_stamped.pose.position.z
-                   << " yaw: " << yaw << std::endl;
-
-        p_motion_.async<void>("moveTo",
-                              msg->pose_stamped.pose.position.x,
-                              msg->pose_stamped.pose.position.y,
-                              yaw,
-                              qi::AnyValue::from(moveConfig));
-    }
-    else {
+    if (msg->referenceFrame == 1) {
         geometry_msgs::PoseStamped pose_msg_bf;
 
         bool canTransform = tf2_buffer_->canTransform(
                     "base_footprint",
-                    msg->pose_stamped.header.frame_id,
+                    "odom",
                     ros::Time(0),
                     ros::Duration(2));
 
         if (!canTransform) {
             std::cout << "Cannot transform from "
-                    << msg->pose_stamped.header.frame_id
-                    << " to base_footprint"
-                    << std::endl;
+                      << "odom"
+                      << " to base_footprint"
+                      << std::endl;
             return;
         }
 
         try {
-            const geometry_msgs::PoseStamped pose_stamped = msg->pose_stamped;
+            geometry_msgs::PoseStamped pose_stamped = msg->pose_stamped;
+            pose_stamped.header.frame_id = "odom";
+
             tf2_buffer_->transform(
                       pose_stamped,
                       pose_msg_bf,
                       "base_footprint",
                       ros::Time(0),
-                      msg->pose_stamped.header.frame_id);
+                      "odom");
 
             double yaw = helpers::transform::getYaw(pose_msg_bf.pose);
             std::cout << "odom to move x: "
@@ -126,6 +117,94 @@ void MovetoSubscriber::callback(
             std::cout << "received an error on the time lookup" << std::endl;
         }
     }
+
+    else {
+        double yaw = helpers::transform::getYaw(msg->pose_stamped.pose);
+
+        std::cout << "going to move x: "
+                  <<  msg->pose_stamped.pose.position.x
+                   << " y: " << msg->pose_stamped.pose.position.y
+                   << " z: " << msg->pose_stamped.pose.position.z
+                   << " yaw: " << yaw << std::endl;
+
+        p_motion_.async<void>("moveTo",
+                              msg->pose_stamped.pose.position.x,
+                              msg->pose_stamped.pose.position.y,
+                              yaw,
+                              qi::AnyValue::from(moveConfig));
+    }
+
+//    if (msg->pose_stamped.header.frame_id == "base_footprint") {
+
+//        double yaw = helpers::transform::getYaw(msg->pose_stamped.pose);
+
+//        std::cout << "going to move x: "
+//                  <<  msg->pose_stamped.pose.position.x
+//                   << " y: " << msg->pose_stamped.pose.position.y
+//                   << " z: " << msg->pose_stamped.pose.position.z
+//                   << " yaw: " << yaw << std::endl;
+
+//        p_motion_.async<void>("moveTo",
+//                              msg->pose_stamped.pose.position.x,
+//                              msg->pose_stamped.pose.position.y,
+//                              yaw,
+//                              qi::AnyValue::from(moveConfig));
+//    }
+//    else {
+//        geometry_msgs::PoseStamped pose_msg_bf;
+
+//        bool canTransform = tf2_buffer_->canTransform(
+//                    "base_footprint",
+//                    msg->pose_stamped.header.frame_id,
+//                    ros::Time(0),
+//                    ros::Duration(2));
+
+//        if (!canTransform) {
+//            std::cout << "Cannot transform from "
+//                    << msg->pose_stamped.header.frame_id
+//                    << " to base_footprint"
+//                    << std::endl;
+//            return;
+//        }
+
+//        try {
+//            const geometry_msgs::PoseStamped pose_stamped = msg->pose_stamped;
+//            tf2_buffer_->transform(
+//                      pose_stamped,
+//                      pose_msg_bf,
+//                      "base_footprint",
+//                      ros::Time(0),
+//                      msg->pose_stamped.header.frame_id);
+
+//            double yaw = helpers::transform::getYaw(pose_msg_bf.pose);
+//            std::cout << "odom to move x: "
+//                    <<  pose_msg_bf.pose.position.x
+//                     << " y: "
+//                     << pose_msg_bf.pose.position.y
+//                     << " z: "
+//                     << pose_msg_bf.pose.position.z
+//                     << " yaw: "
+//                     << yaw
+//                     << std::endl;
+
+//            p_motion_.async<void>("moveTo",
+//                                  pose_msg_bf.pose.position.x,
+//                                  pose_msg_bf.pose.position.y,
+//                                  yaw,
+//                                  qi::AnyValue::from(moveConfig));
+
+//        } catch( const tf2::LookupException& e) {
+//            std::cout << e.what() << std::endl;
+//            std::cout << "moveto position in frame_id "
+//                      << msg->pose_stamped.header.frame_id
+//                      << "is not supported in any other base frame than "
+//                         "basefootprint"
+//                      << std::endl;
+
+//        } catch( const tf2::ExtrapolationException& e) {
+//            std::cout << "received an error on the time lookup" << std::endl;
+//        }
+//    }
 }
 
 } //publisher
