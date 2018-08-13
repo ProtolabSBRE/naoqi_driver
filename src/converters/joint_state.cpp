@@ -152,7 +152,7 @@ void JointStateConverter::callAll( const std::vector<message_actions::MessageAct
 
   static geometry_msgs::TransformStamped msg_tf_odom;
   msg_tf_odom.header.frame_id = "odom";
-  msg_tf_odom.child_frame_id = "base_link";
+  msg_tf_odom.child_frame_id = "base_footprint";
   msg_tf_odom.header.stamp = odom_stamp;
 
   msg_tf_odom.transform.translation.x = odomX;
