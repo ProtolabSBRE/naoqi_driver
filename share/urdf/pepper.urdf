@@ -63,7 +63,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.079"/>
     <child link="torso_base"/>
     <parent link="Hip"/>
-    <axis xyz="1.0 0 0"/>
+    <axis xyz="-1.0 0 0"/>
     <limit effort="10.1884" lower="-0.514872" upper="0.514872" velocity="2.27032"/>
   </joint>
   <link name="Hip">
@@ -89,7 +89,7 @@
     <origin rpy="0 0 0" xyz="0 0 0.268"/>
     <child link="Hip"/>
     <parent link="Pelvis"/>
-    <axis xyz="0 1.0 0"/>
+    <axis xyz="0 -1.0 0"/>
     <limit effort="19.787" lower="-1.03847" upper="1.03847" velocity="2.93276"/>
   </joint>
   <link name="Pelvis">
@@ -115,7 +115,7 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <child link="Pelvis"/>
     <parent link="Tibia"/>
-    <axis xyz="0 1.0 0"/>
+    <axis xyz="0 -1.0 0"/>
     <limit effort="27.702" lower="-0.514872" upper="0.514872" velocity="2.93276"/>
   </joint>
   <link name="Tibia">
@@ -455,32 +455,6 @@
       <inertia ixx="1.1e-09" ixy="0" ixz="0" iyy="1.1e-09" iyz="0" izz="1.1e-09"/>
     </inertial>
   </link>
-  <joint name="RGrasp" type="fixed">
-    <parent link="r_wrist"/>
-    <child link="r_grasp_frame"/>
-    <origin rpy="-3.1415 0 1.5707" xyz="0.05 0 0"/>
-    <axis xyz="1.0 0 0"/>
-    <limit effort="0.144" lower="0.02" upper="0.98" velocity="12.56"/>
-  </joint>
-  <link name="r_grasp_frame">
-    <inertial>
-      <mass value="0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-    </inertial>
-  </link>
-  <joint name="LGrasp" type="fixed">
-    <parent link="l_wrist"/>
-    <child link="l_grasp_frame"/>
-    <origin rpy="-3.1415 0 1.5707" xyz="0.05 0 0"/>
-    <axis xyz="1.0 0 0"/>
-    <limit effort="0.144" lower="0.02" upper="0.98" velocity="12.56"/>
-  </joint>
-  <link name="l_grasp_frame">
-    <inertial>
-      <mass value="0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-    </inertial>
-  </link>
   <link name="SonarBack_frame"/>
   <joint name="Sonar/Back_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
@@ -702,10 +676,16 @@
     <origin rpy="0 -0.0349066 0" xyz="0.0041 0 0.2159"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="Lgrasp_frame"/>
-  <joint name="Lgrasp_frame_joint" type="fixed">
+  <link name="l_grasp_frame"/>
+  <joint name="LGrasp" type="fixed">
     <parent link="l_wrist"/>
-    <child link="Lgrasp_frame"/>
+    <child link="l_grasp_frame"/>
+    <origin rpy="3.1415 0 1.5707" xyz="0.070 0 0"/>
+  </joint>
+  <link name="r_grasp_frame"/>
+  <joint name="RGrasp" type="fixed">
+    <parent link="r_wrist"/>
+    <child link="r_grasp_frame"/>
     <origin rpy="3.1415 0 1.5707" xyz="0.070 0 0"/>
   </joint>
   <link name="RFinger41_link">
