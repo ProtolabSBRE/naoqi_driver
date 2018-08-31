@@ -17,7 +17,7 @@
   <link name="Neck">
     <inertial>
       <mass value="0.27391"/>
-      <inertia ixx="0.000343501" ixy="0" ixz="4.87482e-05" iyy="0.000493898" iyz="-2.09863e-06" izz="0.000215252"/>
+      <inertia ixx="0.000343501" ixy="0" ixz="-1.88563e-05" iyy="0.000493898" iyz="2.09863e-06" izz="0.000215252"/>
       <origin rpy="0 0 0" xyz="-0.00207 0 -0.02636"/>
     </inertial>
     <visual>
@@ -43,7 +43,7 @@
   <link name="Head">
     <inertial>
       <mass value="1.51893"/>
-      <inertia ixx="0.00597209" ixy="0" ixz="0.000931862" iyy="0.0059054" iyz="-4.3428e-07" izz="0.00570374"/>
+      <inertia ixx="0.00597209" ixy="0" ixz="0.000125138" iyy="0.0059054" iyz="4.3428e-07" izz="0.00570374"/>
       <origin rpy="0 0 0" xyz="0.00312 0 0.11152"/>
     </inertial>
     <visual>
@@ -60,72 +60,69 @@
     </collision>
   </link>
   <joint name="HipRoll" type="revolute">
-    <parent link="torso"/>
-    <child link="Hip"/>
-    <origin rpy="0 0 0" xyz="2e-05 0 -0.139"/>
-    <axis xyz="1.0 0 0"/>
-    <!-- <limit effort="10.1884" lower="-0.514872" upper="0.514872" velocity="2.27032"/> -->
-    <limit effort="10.1884" lower="-0.257" upper="0.257" velocity="2.27032"/>
+    <origin rpy="0 0 0" xyz="-2e-05 0 0.218"/>
+    <child link="torso"/>
+    <parent link="Hip"/>
+    <axis xyz="-1.0 0 0"/>
+    <limit effort="10.1884" lower="-0.514872" upper="0.514872" velocity="2.27032"/>
   </joint>
   <link name="Hip">
     <inertial>
       <mass value="1.02338"/>
-      <inertia ixx="0.00502422" ixy="0" ixz="-1.40621e-05" iyy="0.00640971" iyz="-0.000159449" izz="0.00441082"/>
-      <origin rpy="0 0 0" xyz="0.00032 0 -0.06039"/>
+      <inertia ixx="0.00502422" ixy="0" ixz="-2.54911e-05" iyy="0.00640971" iyz="0.000159449" izz="0.00441082"/>
+      <origin rpy="0 0 0" xyz="0.00032 0 -0.07068"/>
     </inertial>
     <visual>
       <geometry>
         <mesh filename="package://pepper_meshes/meshes/1.0/HipRoll.dae" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.079"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="package://pepper_meshes/meshes/1.0/HipRoll_0.10.stl" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.079"/>
     </collision>
   </link>
   <joint name="HipPitch" type="revolute">
-    <parent link="Hip"/>
-    <child link="Pelvis"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.079"/>
-    <axis xyz="0 1.0 0"/>
-    <!-- <limit effort="19.787" lower="-1.03847" upper="1.03847" velocity="2.93276"/> -->
-    <limit effort="19.787" lower="-0.346" upper="0.346" velocity="2.93276"/>
+    <origin rpy="0 0 0" xyz="0 0 0.268"/>
+    <child link="Hip"/>
+    <parent link="Pelvis"/>
+    <axis xyz="0 -1.0 0"/>
+    <limit effort="19.787" lower="-1.03847" upper="1.03847" velocity="2.93276"/>
   </joint>
   <link name="Pelvis">
     <inertial>
       <mass value="2.45917"/>
-      <inertia ixx="0.034351" ixy="0" ixz="-0.00134835" iyy="0.0303122" iyz="8.37542e-05" izz="0.0143771"/>
-      <origin rpy="0 0 0" xyz="0.00237 0 -0.09654"/>
+      <inertia ixx="0.034351" ixy="0" ixz="0.000223034" iyy="0.0303122" iyz="-8.37542e-05" izz="0.0143771"/>
+      <origin rpy="0 0 0" xyz="0.00237 0 -0.01754"/>
     </inertial>
     <visual>
       <geometry>
         <mesh filename="package://pepper_meshes/meshes/1.0/HipPitch.dae" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.268"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="package://pepper_meshes/meshes/1.0/HipPitch_0.10.stl" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.268"/>
     </collision>
   </link>
   <joint name="KneePitch" type="revolute">
-    <parent link="Pelvis"/>
-    <child link="Tibia"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.268"/>
-    <axis xyz="0 1.0 0"/>
-    <!-- <limit effort="27.702" lower="-0.514872" upper="0.514872" velocity="2.93276"/> -->
-    <limit effort="27.702" lower="-0.1716" upper="0.1716" velocity="2.93276"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="Pelvis"/>
+    <parent link="Tibia"/>
+    <axis xyz="0 -1.0 0"/>
+    <limit effort="27.702" lower="-0.514872" upper="0.514872" velocity="2.93276"/>
   </joint>
   <link name="Tibia">
     <inertial>
       <mass value="11.6015"/>
-      <inertia ixx="0.129229" ixy="0.000401632" ixz="-0.0168449" iyy="0.122839" iyz="-1.01666e-08" izz="0.108168"/>
-      <origin rpy="0 0 0" xyz="0.00220451 0 -0.185729"/>
+      <inertia ixx="0.129229" ixy="-0.000401943" ixz="0.00048556" iyy="0.122839" iyz="-1.01666e-08" izz="0.108168"/>
+      <origin rpy="0 0 0" xyz="0.00220451 0 0.082271"/>
     </inertial>
     <visual>
       <geometry>
@@ -141,22 +138,15 @@
     </collision>
   </link>
   <joint name="base_footprint_joint" type="fixed">
-    <parent link="Tibia"/>
-    <child link="base_footprint"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.334"/>
+    <origin rpy="0 0 0" xyz="0 0 0.334"/>
+    <child link="Tibia"/>
+    <parent link="base_footprint"/>
   </joint>
   <link name="base_footprint"/>
-  <link name="base_link"/>
-  <joint name="base_link_fixedjoint" type="fixed">
-    <parent link="base_link"/>
-    <child link="torso"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 0 0"/>
-  </joint>
   <link name="torso">
     <inertial>
       <mass value="3.99533"/>
-      <inertia ixx="0.0452761" ixy="0" ixz="-0.00525567" iyy="0.0432702" iyz="0.000266886" izz="0.0258881"/>
+      <inertia ixx="0.0452761" ixy="0" ixz="0.00499091" iyy="0.0432702" iyz="-0.000266886" izz="0.0258881"/>
       <origin rpy="0 0 0" xyz="0.00322 0 -0.01029"/>
     </inertial>
     <visual>
@@ -182,7 +172,7 @@
   <link name="LShoulder">
     <inertial>
       <mass value="0.3125"/>
-      <inertia ixx="0.000361198" ixy="-1.0453e-07" ixz="-5.24532e-07" iyy="0.000137229" iyz="-5.79522e-06" izz="0.000399194"/>
+      <inertia ixx="0.000361198" ixy="-1.98347e-06" ixz="6.35907e-07" iyy="0.000137229" iyz="-5.68878e-06" izz="0.000399194"/>
       <origin rpy="0 0 0" xyz="0.00018 -0.01856 0.00099"/>
     </inertial>
     <visual>
@@ -208,7 +198,7 @@
   <link name="LBicep">
     <inertial>
       <mass value="0.50527"/>
-      <inertia ixx="0.000500872" ixy="0.00109321" ixz="-0.00092282" iyy="0.00126284" iyz="-0.000141027" izz="0.00115718"/>
+      <inertia ixx="0.000500872" ixy="-3.55918e-05" ixz="8.51263e-05" iyy="0.00126284" iyz="9.06813e-06" izz="0.00115718"/>
       <origin rpy="0 0 0" xyz="0.08151 0.01284 -0.01017"/>
     </inertial>
     <visual>
@@ -234,7 +224,7 @@
   <link name="LElbow">
     <inertial>
       <mass value="0.27495"/>
-      <inertia ixx="0.000122971" ixy="1.4139e-06" ixz="1.05526e-05" iyy="0.000331766" iyz="1.86491e-06" izz="0.000303047"/>
+      <inertia ixx="0.000122971" ixy="9.86024e-07" ixz="-2.55838e-05" iyy="0.000331766" iyz="-1.98925e-06" izz="0.000303047"/>
       <origin rpy="0 0 0" xyz="-0.02297 -0.00019 0.00119"/>
     </inertial>
     <visual>
@@ -260,7 +250,7 @@
   <link name="LForeArm">
     <inertial>
       <mass value="0.16579"/>
-      <inertia ixx="0.00156513" ixy="3.85342e-05" ixz="-0.000138805" iyy="0.00173219" iyz="-8.93543e-06" izz="0.000273081"/>
+      <inertia ixx="0.00156513" ixy="1.47517e-05" ixz="-6.05746e-05" iyy="0.00173219" iyz="-1.7619e-07" izz="0.000273081"/>
       <origin rpy="0 0 0" xyz="0.0593 0.00271 -0.01014"/>
     </inertial>
     <visual>
@@ -286,7 +276,7 @@
   <link name="l_wrist">
     <inertial>
       <mass value="0.27555"/>
-      <inertia ixx="0.000151643" ixy="-2.46935e-05" ixz="-4.3233e-05" iyy="0.000431099" iyz="3.95851e-06" izz="0.000456172"/>
+      <inertia ixx="0.000151643" ixy="1.06629e-05" ixz="2.89509e-06" iyy="0.000431099" iyz="-3.13715e-06" izz="0.000456172"/>
       <origin rpy="0 0 0" xyz="0.03536 -0.00072 -0.00207"/>
     </inertial>
     <visual>
@@ -325,7 +315,7 @@
   <link name="RShoulder">
     <inertial>
       <mass value="0.3125"/>
-      <inertia ixx="0.000361198" ixy="1.0453e-07" ixz="-5.24532e-07" iyy="0.000137229" iyz="5.79522e-06" izz="0.000399194"/>
+      <inertia ixx="0.000361198" ixy="1.98347e-06" ixz="6.35907e-07" iyy="0.000137229" iyz="5.68878e-06" izz="0.000399194"/>
       <origin rpy="0 0 0" xyz="0.00018 0.01856 0.00099"/>
     </inertial>
     <visual>
@@ -351,7 +341,7 @@
   <link name="RBicep">
     <inertial>
       <mass value="0.50527"/>
-      <inertia ixx="0.000500872" ixy="-0.00109321" ixz="-0.00092282" iyy="0.00126284" iyz="0.000141027" izz="0.00115718"/>
+      <inertia ixx="0.000500872" ixy="3.55918e-05" ixz="8.51263e-05" iyy="0.00126284" iyz="-9.06813e-06" izz="0.00115718"/>
       <origin rpy="0 0 0" xyz="0.08151 -0.01284 -0.01017"/>
     </inertial>
     <visual>
@@ -377,7 +367,7 @@
   <link name="RElbow">
     <inertial>
       <mass value="0.27495"/>
-      <inertia ixx="0.000122971" ixy="-1.4139e-06" ixz="1.05526e-05" iyy="0.000331766" iyz="-1.86491e-06" izz="0.000303047"/>
+      <inertia ixx="0.000122971" ixy="-9.86024e-07" ixz="-2.55838e-05" iyy="0.000331766" iyz="1.98925e-06" izz="0.000303047"/>
       <origin rpy="0 0 0" xyz="-0.02297 0.00019 0.00119"/>
     </inertial>
     <visual>
@@ -403,7 +393,7 @@
   <link name="RForeArm">
     <inertial>
       <mass value="0.16579"/>
-      <inertia ixx="0.00156513" ixy="-3.85342e-05" ixz="-0.000138805" iyy="0.00173219" iyz="8.93543e-06" izz="0.000273081"/>
+      <inertia ixx="0.00156513" ixy="-1.47517e-05" ixz="-6.05746e-05" iyy="0.00173219" iyz="1.7619e-07" izz="0.000273081"/>
       <origin rpy="0 0 0" xyz="0.0593 -0.00271 -0.01014"/>
     </inertial>
     <visual>
@@ -429,7 +419,7 @@
   <link name="r_wrist">
     <inertial>
       <mass value="0.27555"/>
-      <inertia ixx="0.000151643" ixy="2.46935e-05" ixz="-4.3233e-05" iyy="0.000431099" iyz="-3.95851e-06" izz="0.000456172"/>
+      <inertia ixx="0.000151643" ixy="-1.06629e-05" ixz="2.89509e-06" iyy="0.000431099" iyz="3.13715e-06" izz="0.000456172"/>
       <origin rpy="0 0 0" xyz="0.03536 0.00072 -0.00207"/>
     </inertial>
     <visual>
@@ -488,14 +478,14 @@
   <joint name="LaserSensor/VerticalLeft_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="VerticalLeftLaser_frame"/>
-    <origin rpy="0 0.349044 0" xyz="0.0562 0 -0.0692"/>
+    <origin rpy="0 0.349066 0" xyz="0.0562 0 -0.0692"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="SurroundingFrontLaser_device_frame"/>
   <joint name="LaserSensor/Front_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="SurroundingFrontLaser_device_frame"/>
-    <origin rpy="0 0.349044 0" xyz="0.0562 0 -0.0692"/>
+    <origin rpy="0 0.349066 0" xyz="0.0562 0 -0.0692"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="BumperB_frame"/>
@@ -516,7 +506,7 @@
   <joint name="LaserSensor/Shovel_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="ShovelLaser_frame"/>
-    <origin rpy="0 0.349044 0" xyz="0.0562 0 -0.0692"/>
+    <origin rpy="0 0.349066 0" xyz="0.0562 0 -0.0692"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="ImuTorsoAccelerometer_frame"/>
@@ -526,18 +516,18 @@
     <origin rpy="0 0 0" xyz="0.00239 -0.03575 0.00626"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="CameraTop_frame"/>
-  <joint name="CameraTop_sensor_fixedjoint" type="fixed">
+  <link name="RSpeaker_frame"/>
+  <joint name="SpeakerRight_sensor_fixedjoint" type="fixed">
     <parent link="Head"/>
-    <child link="CameraTop_frame"/>
-    <origin rpy="0 0 0" xyz="0.0868 0 0.1631"/>
+    <child link="RSpeaker_frame"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="SurroundingRightLaser_device_frame"/>
   <joint name="LaserSensor/Right_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="SurroundingRightLaser_device_frame"/>
-    <origin rpy="4.08851e-07 0.191857 -1.60746" xyz="-0.018 -0.0899 -0.0759"/>
+    <origin rpy="0 0.349066 -1.5708" xyz="-0.018 -0.0899 -0.0759"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="LSpeaker_frame"/>
@@ -554,18 +544,18 @@
     <origin rpy="1.5708 -1.5708 -3.14159" xyz="0.0523 0 0.0304"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="ImuBaseGyrometer_frame"/>
-  <joint name="GyrometerBase_sensor_fixedjoint" type="fixed">
-    <parent link="Tibia"/>
-    <child link="ImuBaseGyrometer_frame"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.3"/>
+  <link name="CameraTop_frame"/>
+  <joint name="CameraTop_sensor_fixedjoint" type="fixed">
+    <parent link="Head"/>
+    <child link="CameraTop_frame"/>
+    <origin rpy="0 0 0" xyz="0.08601 0 0.16284"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="SurroundingLeftLaser_device_frame"/>
   <joint name="LaserSensor/Left_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="SurroundingLeftLaser_device_frame"/>
-    <origin rpy="8.34035e-09 0.191982 1.5708" xyz="-0.018 0.0899 -0.0759"/>
+    <origin rpy="0 0.349066 1.5708" xyz="-0.018 0.0899 -0.0759"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="CameraDepth_frame"/>
@@ -593,7 +583,7 @@
   <joint name="LaserSensor/VerticalRight_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="VerticalRightLaser_frame"/>
-    <origin rpy="0 0.349044 0" xyz="0.0562 0 -0.0692"/>
+    <origin rpy="0 0.349066 0" xyz="0.0562 0 -0.0692"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="SonarFront_frame"/>
@@ -614,7 +604,7 @@
   <joint name="CameraBottom_sensor_fixedjoint" type="fixed">
     <parent link="Head"/>
     <child link="CameraBottom_frame"/>
-    <origin rpy="0 0.698132 0" xyz="0.0936 0 0.0616"/>
+    <origin rpy="0 0.698132 0" xyz="0.09262 0 0.06177"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="CameraTop_optical_frame"/>
@@ -627,7 +617,7 @@
   <joint name="AccelerometerBase_sensor_fixedjoint" type="fixed">
     <parent link="Tibia"/>
     <child link="ImuBaseAccelerometer_frame"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.3"/>
+    <origin rpy="0 0 0" xyz="0.0147 -0.0017 -0.26319"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="ImuTorsoGyrometer_frame"/>
@@ -672,19 +662,24 @@
     <origin rpy="0 0 0" xyz="0.049871 0.001588 0.055163"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="RSpeaker_frame"/>
-  <joint name="SpeakerRight_sensor_fixedjoint" type="fixed">
-    <parent link="Head"/>
-    <child link="RSpeaker_frame"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 0 0"/>
-  </joint>
   <link name="HeadTouchMiddle_frame"/>
   <joint name="Head/Touch/Middle_sensor_fixedjoint" type="fixed">
     <parent link="Head"/>
     <child link="HeadTouchMiddle_frame"/>
     <origin rpy="0 -0.0349066 0" xyz="0.0041 0 0.2159"/>
     <axis xyz="0 0 0"/>
+  </joint>
+  <link name="l_grasp_frame"/>
+  <joint name="LGrasp" type="fixed">
+    <parent link="l_wrist"/>
+    <child link="l_grasp_frame"/>
+    <origin rpy="3.1415 0 1.5707" xyz="0.070 0 0"/>
+  </joint>
+  <link name="r_grasp_frame"/>
+  <joint name="RGrasp" type="fixed">
+    <parent link="r_wrist"/>
+    <child link="r_grasp_frame"/>
+    <origin rpy="3.1415 0 1.5707" xyz="0.070 0 0"/>
   </joint>
   <link name="RFinger41_link">
     <inertial>
@@ -735,31 +730,6 @@
     <origin rpy="0 0 -1.0472" xyz="0.018 0 0"/>
     <axis xyz="0 0 1.0"/>
     <mimic joint="LHand" multiplier="0.872665" offset="0"/>
-  </joint>
-  <link name="RFinger11_link">
-    <inertial>
-      <mass value="2e-06"/>
-      <inertia ixx="1.1e-09" ixy="0" ixz="0" iyy="1.1e-09" iyz="0" izz="1.1e-09"/>
-    </inertial>
-    <visual>
-      <geometry>
-        <mesh filename="package://pepper_meshes/meshes/1.0/RFinger11.dae" scale="0.1 0.1 0.1"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://pepper_meshes/meshes/1.0/RFinger11_0.10.stl" scale="0.1 0.1 0.1"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </collision>
-  </link>
-  <joint name="RFinger11" type="continuous">
-    <parent link="r_wrist"/>
-    <child link="RFinger11_link"/>
-    <origin rpy="1.39757 1.04064 0.0334335" xyz="0.0821 0.0268 0.004"/>
-    <axis xyz="0 0 1.0"/>
-    <mimic joint="RHand" multiplier="0.872665" offset="0"/>
   </joint>
   <link name="RFinger12_link">
     <inertial>
@@ -1136,6 +1106,31 @@
     <axis xyz="0 0 1.0"/>
     <mimic joint="RHand" multiplier="0.872665" offset="0"/>
   </joint>
+  <link name="RFinger11_link">
+    <inertial>
+      <mass value="2e-06"/>
+      <inertia ixx="1.1e-09" ixy="0" ixz="0" iyy="1.1e-09" iyz="0" izz="1.1e-09"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://pepper_meshes/meshes/1.0/RFinger11.dae" scale="0.1 0.1 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://pepper_meshes/meshes/1.0/RFinger11_0.10.stl" scale="0.1 0.1 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="RFinger11" type="continuous">
+    <parent link="r_wrist"/>
+    <child link="RFinger11_link"/>
+    <origin rpy="1.39757 1.04064 0.0334335" xyz="0.0821 0.0268 0.004"/>
+    <axis xyz="0 0 1.0"/>
+    <mimic joint="RHand" multiplier="0.872665" offset="0"/>
+  </joint>
   <link name="LFinger23_link">
     <inertial>
       <mass value="2e-06"/>
@@ -1386,36 +1381,10 @@
     <axis xyz="0 0 1.0"/>
     <mimic joint="LHand" multiplier="0.872665" offset="0"/>
   </joint>
-  <link name="WheelB_link">
-    <inertial>
-      <mass value="1.58028"/>
-      <inertia ixx="0.00299756" ixy="-6.3068e-07" ixz="-5.56903e-06" iyy="0.00303229" iyz="9.0408e-07" izz="0.00296585"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </inertial>
-    <visual>
-      <geometry>
-        <mesh filename="package://pepper_meshes/meshes/1.0/WheelB.dae" scale="0.1 0.1 0.1"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://pepper_meshes/meshes/1.0/WheelB_0.10.stl" scale="0.1 0.1 0.1"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </collision>
-  </link>
-  <joint name="WheelB" type="continuous">
-    <parent link="Tibia"/>
-    <child link="WheelB_link"/>
-    <origin rpy="0 0 -3.14159" xyz="-0.17 0 -0.264"/>
-    <axis xyz="1.0 0 0"/>
-    <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
-  </joint>
   <link name="WheelFL_link">
     <inertial>
       <mass value="1.58028"/>
-      <inertia ixx="0.00299756" ixy="-6.3068e-07" ixz="-5.56903e-06" iyy="0.00303229" iyz="9.0408e-07" izz="0.00296585"/>
+      <inertia ixx="0.00299756" ixy="6.3068e-07" ixz="5.56903e-06" iyy="0.00303229" iyz="-9.0408e-07" izz="0.00296585"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <visual>
@@ -1438,10 +1407,36 @@
     <axis xyz="1.0 0 0"/>
     <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
   </joint>
+  <link name="WheelB_link">
+    <inertial>
+      <mass value="1.58028"/>
+      <inertia ixx="0.00299756" ixy="6.3068e-07" ixz="5.56903e-06" iyy="0.00303229" iyz="-9.0408e-07" izz="0.00296585"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://pepper_meshes/meshes/1.0/WheelB.dae" scale="0.1 0.1 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://pepper_meshes/meshes/1.0/WheelB_0.10.stl" scale="0.1 0.1 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="WheelB" type="continuous">
+    <parent link="Tibia"/>
+    <child link="WheelB_link"/>
+    <origin rpy="0 0 -3.14159" xyz="-0.17 0 -0.264"/>
+    <axis xyz="1.0 0 0"/>
+    <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
+  </joint>
   <link name="WheelFR_link">
     <inertial>
       <mass value="1.58028"/>
-      <inertia ixx="0.00299756" ixy="-6.3068e-07" ixz="-5.56903e-06" iyy="0.00303229" iyz="9.0408e-07" izz="0.00296585"/>
+      <inertia ixx="0.00299756" ixy="6.3068e-07" ixz="5.56903e-06" iyy="0.00303229" iyz="-9.0408e-07" izz="0.00296585"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <visual>
@@ -1464,4 +1459,1104 @@
     <axis xyz="1.0 0 0"/>
     <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
   </joint>
+  <!-- GAZEBO ROS CONTROL -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace/>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger11">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger11</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger12">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger12</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger13">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger13</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger21">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger21</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger22">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger22</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger23">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger23</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger31">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger31</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger32">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger32</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger33">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger33</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger41">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger41</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger42">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger42</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger43">
+      <joint>LHand</joint>
+      <mimicJoint>LFinger43</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger11">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger11</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger12">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger12</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger13">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger13</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger21">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger21</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger22">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger22</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger23">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger23</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger31">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger31</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger32">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger32</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger33">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger33</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger41">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger41</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger42">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger42</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_RFinger43">
+      <joint>RHand</joint>
+      <mimicJoint>RFinger43</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="LThumb1">
+      <joint>LHand</joint>
+      <mimicJoint>LThumb1</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="LThumb2">
+      <joint>LHand</joint>
+      <mimicJoint>LThumb2</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="RThumb1">
+      <joint>RHand</joint>
+      <mimicJoint>RThumb1</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="RThumb2">
+      <joint>RHand</joint>
+      <mimicJoint>RThumb2</mimicJoint>
+      <multiplier>-0.785398163398</multiplier>
+      <offset>0.785398163398</offset>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger11_link">
+      <link>LFinger11_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger12_link">
+      <link>LFinger12_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger13_link">
+      <link>LFinger13_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger21_link">
+      <link>LFinger21_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger22_link">
+      <link>LFinger22_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger23_link">
+      <link>LFinger23_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger31_link">
+      <link>LFinger31_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger32_link">
+      <link>LFinger32_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger33_link">
+      <link>LFinger33_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger41_link">
+      <link>LFinger41_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger42_link">
+      <link>LFinger42_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LFinger43_link">
+      <link>LFinger43_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LThumb1_link">
+      <link>LThumb1_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="LThumb2_link">
+      <link>LThumb2_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="l_gripper">
+      <link>l_gripper</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger11_link">
+      <link>RFinger11_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger12_link">
+      <link>RFinger12_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger13_link">
+      <link>RFinger13_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger21_link">
+      <link>RFinger21_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger22_link">
+      <link>RFinger22_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger23_link">
+      <link>RFinger23_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger31_link">
+      <link>RFinger31_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger32_link">
+      <link>RFinger32_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger33_link">
+      <link>RFinger33_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger41_link">
+      <link>RFinger41_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger42_link">
+      <link>RFinger42_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RFinger43_link">
+      <link>RFinger43_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RThumb1_link">
+      <link>RThumb1_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="RThumb2_link">
+      <link>RThumb2_link</link>
+    </plugin>
+    <plugin filename="libroboticsgroup_gazebo_disable_link_plugin.so" name="r_gripper">
+      <link>r_gripper</link>
+    </plugin>
+  </gazebo>
+  <!-- END OF GAZEBO ROS CONTROL PLUGIN -->
+  <!-- GAZEBO MATERIALS -->
+  <gazebo reference="base_footprint">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="base_link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="torso">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="Neck">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="Head">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="gaze">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <!-- ARMS -->
+  <gazebo reference="LShoulder">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LBicep">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LElbow">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LForeArm">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="l_wrist">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="l_gripper">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RShoulder">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RBicep">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RElbow">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RForeArm">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="r_wrist">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="r_gripper">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger11_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger12_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger13_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger21_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger22_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger23_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger31_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger32_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger33_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger41_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger42_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LFinger43_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LThumb1_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="LThumb2_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="Hip">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="Pelvis">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="Tibia">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="WheelFL_link">
+    <mu1>1</mu1>
+    <mu2>0</mu2>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <fdir1 value="1 0 0"/>
+    <minDepth>0.003</minDepth>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="WheelB_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <fdir1 value="1 0 0"/>
+    <minDepth>0.003</minDepth>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="WheelFR_link">
+    <mu1>0</mu1>
+    <mu2>1</mu2>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <fdir1 value="0 1 0"/>
+    <minDepth>0.003</minDepth>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger11_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger12_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger13_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger21_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger22_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger23_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger31_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger32_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger33_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger41_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger42_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RFinger43_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RThumb1_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <gazebo reference="RThumb2_link">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <selfCollide>false</selfCollide>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+  <!--
+        RGB CAMERAS:
+-->
+  <gazebo reference="CameraTop_frame">
+    <sensor name="CameraTop" type="camera">
+      <update_rate>5.0</update_rate>
+      <camera name="camera_top">
+        <horizontal_fov>1.0</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.3</near>
+          <far>500</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
+        <robotNamespace>/pepper_robot</robotNamespace>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>5.0</updateRate>
+        <cameraName>camera/front</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>CameraTop_optical_frame</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>-0.0545211</distortionK1>
+        <distortionK2>0.06919734</distortionK2>
+        <distortionK3>-0.0241095</distortionK3>
+        <distortionT1>-0.0112245</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo reference="CameraBottom_frame">
+    <sensor name="CameraBottom" type="camera">
+      <update_rate>5.0</update_rate>
+      <camera name="camera_bottom">
+        <horizontal_fov>1.0</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>500</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
+        <robotNamespace>/pepper_robot</robotNamespace>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>5.0</updateRate>
+        <cameraName>camera/bottom</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>CameraBottom_optical_frame</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>-0.0648764</distortionK1>
+        <distortionK2>0.06125202</distortionK2>
+        <distortionK3>0.00382815</distortionK3>
+        <distortionT1>-0.00551104</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo reference="CameraDepth_frame">
+    <sensor name="CameraDepth_frame_sensor" type="depth">
+      <always_on>true</always_on>
+      <update_rate>20.0</update_rate>
+      <camera>
+        <horizontal_fov>1.01229096616</horizontal_fov>
+        <image>
+          <format>B8G8R8</format>
+          <width>320</width>
+          <height>240</height>
+        </image>
+        <clip>
+          <near>0.4</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <plugin filename="libgazebo_ros_openni_kinect.so" name="CameraDepth_frame_controller">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20.0</updateRate>
+        <cameraName>pepper_robot/camera</cameraName>
+        <imageTopicName>ir/image_raw</imageTopicName>
+        <cameraInfoTopicName>depth/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <frameName>CameraDepth_optical_frame</frameName>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+        <pointCloudCutoffMax>8.0</pointCloudCutoffMax>
+        <!-- <distortionK1>0.00000001</distortionK1>
+          <distortionK2>0.00000001</distortionK2>
+          <distortionK3>0.00000001</distortionK3>
+          <distortionT1>0.00000001</distortionT1>
+          <distortionT2>0.00000001</distortionT2> -->
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!--
+    BUMPERS
+
+<gazebo reference="BumperB_frame">
+  <mu1>0.5</mu1>
+  <mu2>0.5</mu2>
+  <selfCollide>false</selfCollide>
+  <turnGravityOff>false</turnGravityOff>
+  <fdir1>1 0 0</fdir1>
+  <maxVel>0.1</maxVel>
+  <minDepth>0.003</minDepth>
+  <sensor name="BumperB" type="contact">
+    <always_on>1</always_on>
+    <update_rate>20</update_rate>
+    <visualize>false</visualize>
+    <contact>
+      <collision>BumperB_frame_collision</collision>
+    </contact>
+    <plugin filename="libgazebo_ros_bumper.so" name="gazebo_pepper_BumperB">
+      <robotNamespace>/pepper_robot</robotNamespace>
+      <alwaysOn>true</alwaysOn>
+      <bumperTopicName>Bumper/Back</bumperTopicName>
+      <frameName>BumperB_frame</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<gazebo reference="BumperFL_frame">
+  <mu1>0.5</mu1>
+  <mu2>0.5</mu2>
+  <selfCollide>false</selfCollide>
+  <turnGravityOff>false</turnGravityOff>
+  <fdir1>1 0 0</fdir1>
+  <maxVel>0.1</maxVel>
+  <minDepth>0.003</minDepth>
+  <sensor name="BumperFL" type="contact">
+    <always_on>1</always_on>
+    <update_rate>20</update_rate>
+    <visualize>false</visualize>
+    <contact>
+      <collision>BumperFL_frame_collision</collision>
+    </contact>
+    <plugin filename="libgazebo_ros_bumper.so" name="gazebo_pepper_BumperFL">
+      <robotNamespace>/pepper_robot</robotNamespace>
+      <alwaysOn>true</alwaysOn>
+      <bumperTopicName>Bumper/FrontLeft</bumperTopicName>
+      <frameName>BumperFL_frame</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<gazebo reference="BumperFR_frame">
+  <mu1>0.5</mu1>
+  <mu2>0.5</mu2>
+  <selfCollide>false</selfCollide>
+  <turnGravityOff>false</turnGravityOff>
+  <fdir1>1 0 0</fdir1>
+  <maxVel>0.1</maxVel>
+  <minDepth>0.003</minDepth>
+  <sensor name="BumperFR" type="contact">
+    <always_on>1</always_on>
+    <update_rate>20</update_rate>
+    <visualize>false</visualize>
+    <contact>
+      <collision>BumperFR_frame_collision</collision>
+    </contact>
+    <plugin filename="libgazebo_ros_bumper.so" name="gazebo_pepper_BumperFR">
+      <robotNamespace>/pepper_robot</robotNamespace>
+      <alwaysOn>true</alwaysOn>
+      <bumperTopicName>Bumper/FrontRight</bumperTopicName>
+      <frameName>BumperFR_frame</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+-->
+  <!--
+    Sonars
+-->
+  <gazebo reference="SonarBack_frame">
+    <sensor name="SonarBack" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>20</update_rate>
+      <visualize>false</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>5</samples>
+            <resolution>3</resolution>
+            <min_angle>-0.52</min_angle>
+            <max_angle>0.52</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>5</samples>
+            <resolution>3</resolution>
+            <min_angle>-0.52</min_angle>
+            <max_angle>0.52</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0</min>
+          <max>5.0</max>
+          <resolution>3</resolution>
+        </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+        <robotNamespace>/pepper_robot</robotNamespace>
+        <gaussianNoise>0.05</gaussianNoise>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20</updateRate>
+        <topicName>sonar_back</topicName>
+        <frameName>SonarBack_frame</frameName>
+        <minRange>0.0</minRange>
+        <maxRange>5.0</maxRange>
+        <fov>1.05</fov>
+        <radiation>ultrasound</radiation>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo reference="SonarFront_frame">
+    <sensor name="SonarFront" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>20</update_rate>
+      <visualize>false</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>5</samples>
+            <resolution>3</resolution>
+            <min_angle>-0.52</min_angle>
+            <max_angle>0.52</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>5</samples>
+            <resolution>3</resolution>
+            <min_angle>-0.52</min_angle>
+            <max_angle>0.52</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.0</min>
+          <max>5.0</max>
+          <resolution>3</resolution>
+        </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+        <robotNamespace>/pepper_robot</robotNamespace>
+        <gaussianNoise>0.05</gaussianNoise>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20</updateRate>
+        <topicName>sonar_front</topicName>
+        <frameName>SonarFront_frame</frameName>
+        <minRange>0.0</minRange>
+        <maxRange>5.0</maxRange>
+        <fov>1.05</fov>
+        <radiation>ultrasound</radiation>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- Drive controller -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+      <!-- <alwaysOn>true</alwaysOn>
+      <legacyMode>false</legacyMode>
+      <updateRate>100</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftJoint>WheelFL</leftJoint>
+      <rightJoint>WheelFR</rightJoint>
+      <wheelSeparation>0.170</wheelSeparation>
+      <wheelDiameter>0.140</wheelDiameter>
+      <torque>36.9</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom_diffdrive</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometrySource>world</odometrySource>
+      <publishTf>1</publishTf>
+      <rosDebugLevel>na</rosDebugLevel>
+      <wheelAcceleration>0</wheelAcceleration>
+      <wheelTorque>5</wheelTorque>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishWheelTF>false</publishWheelTF>
+      <publishWheelJointState>false</publishWheelJointState> -->
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftJoint>WheelFL</leftJoint>
+      <rightJoint>WheelFR</rightJoint>
+      <wheelSeparation>0.170</wheelSeparation>
+      <wheelDiameter>0.140</wheelDiameter>
+      <torque>36.9</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom_diffdrive</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+  <!-- HEAD -->
+  <transmission name="HeadYaw_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="HeadYaw">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="HeadYaw_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>101.3</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="HeadPitch_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="HeadPitch">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="HeadPitch_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LShoulderPitch_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LShoulderPitch">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LShoulderPitch_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>101.3</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LShoulderRoll_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LShoulderRoll">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LShoulderRoll_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LElbowYaw_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LElbowYaw">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LElbowYaw_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>101.3</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LElbowRoll_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LElbowRoll">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LElbowRoll_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LWristYaw_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LWristYaw">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LWristYaw_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="LHand_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LHand">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="LHand_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>36.24</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RShoulderPitch_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RShoulderPitch">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RShoulderPitch_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>101.3</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RShoulderRoll_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RShoulderRoll">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RShoulderRoll_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RElbowYaw_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RElbowYaw">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RElbowYaw_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>101.3</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RElbowRoll_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RElbowRoll">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RElbowRoll_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RWristYaw_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RWristYaw">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RWristYaw_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>118.1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RHand_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RHand">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RHand_Motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>36.24</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- LEGS -->
+  <transmission name="HipRoll_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="HipRoll">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="HipRoll_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>108.33</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="HipPitch_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="HipPitch">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="HipPitch_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>108.33</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="KneePitch_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="KneePitch">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="KneePitch_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>108.33</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="WheelFL_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="WheelFL">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="WheelFL_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>25.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="WheelB_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="WheelB">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="WheelB_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>25.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="WheelFR_Transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="WheelFR">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="WheelFR_Motor">
+      <!-- Dummy Values -->
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>25.0</mechanicalReduction>
+    </actuator>
+  </transmission>
 </robot>
