@@ -223,6 +223,29 @@ std::string& getLanguage( const qi::SessionPtr& session )
   return language;
 }
 
+bool isRobotStereo(const qi::SessionPtr &session) {
+  std::vector<std::string> sensorNames;
+
+  try {
+    qi::AnyObject p_motion = session->service("ALMotion");
+    sensorNames = p_motion.call<std::vector<std::string>>("getSensorNames");
+
+    if (std::find(sensorNames.begin(),
+                  sensorNames.end(),
+                  "CameraStereo") != sensorNames.end()) {
+      return true;
+    }
+
+    else {
+      return false;
+    }
+
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+    return false;
+  }
+}
+
 } // driver
 } // helpers
 } // naoqi
