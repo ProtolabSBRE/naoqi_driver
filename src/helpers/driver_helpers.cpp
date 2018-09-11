@@ -223,7 +223,7 @@ std::string& getLanguage( const qi::SessionPtr& session )
   return language;
 }
 
-bool isRobotStereo(const qi::SessionPtr &session) {
+bool isDepthStereo(const qi::SessionPtr &session) {
   std::vector<std::string> sensorNames;
 
   try {
