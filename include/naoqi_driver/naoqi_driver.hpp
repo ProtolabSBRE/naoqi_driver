@@ -240,6 +240,7 @@ private:
   bool record_enabled_;
   bool log_enabled_;
   bool keep_looping;
+  bool stereo_depth;
 
   const size_t freq_;
   boost::thread publisherThread_;
