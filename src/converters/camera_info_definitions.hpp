@@ -499,9 +499,9 @@ inline sensor_msgs::CameraInfo createCameraInfoStereoDepth(
                     -0.0000145479062,
                     0.0137237618};
 
-  float rTab[nR] = {1, 0, 0,
-                    0, 1, 0,
-                    0, 0, 1};
+  float rTab[nR] = {0.999984741, 0.000130843779, 0.00552622462,
+                    -0.000111592424, 0.999993920, -0.00348380185,
+                    -0.00552664697, 0.00348313176, 0.999978662};
 
   float pTab[nP] = {569.869568f/reductionFactor, 0, 644.672058f/reductionFactor, 0,
                     0, 569.869568f/reductionFactor, 393.368958f/reductionFactor, 0,
@@ -537,10 +537,52 @@ inline sensor_msgs::CameraInfo createCameraInfoDEPTHQ720P()
   return createCameraInfoStereoDepth(640, 360, 2.0);
 }
 
-inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQ720p()
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQ720P()
 {
   return createCameraInfoStereoDepth(320, 180, 4.0);
 }
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQ720P()
+{
+  return createCameraInfoStereoDepth(160, 90, 8.0);
+}
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQQ720P()
+{
+  return createCameraInfoStereoDepth(80, 45, 16.0);
+}
+
+// Complete methods for stereo image parameteres
+inline sensor_msgs::CameraInfo createCameraInfoDEPTH720PX2()
+{
+  sensor_msgs::CameraInfo cam_info_msg;
+  return cam_info_msg;
+}
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQ720PX2()
+{
+    sensor_msgs::CameraInfo cam_info_msg;
+    return cam_info_msg;
+}
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQ720PX2()
+{
+    sensor_msgs::CameraInfo cam_info_msg;
+    return cam_info_msg;
+}
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQ720PX2()
+{
+    sensor_msgs::CameraInfo cam_info_msg;
+    return cam_info_msg;
+}
+
+inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQQ720PX2()
+{
+    sensor_msgs::CameraInfo cam_info_msg;
+    return cam_info_msg;
+}
+
 
 } // camera_info_definitions
 } //publisher
