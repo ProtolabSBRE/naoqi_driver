@@ -1462,7 +1462,6 @@
   <!-- GAZEBO ROS CONTROL -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace/>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
     <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_LFinger11">
@@ -2066,7 +2065,6 @@
         </noise>
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
-        <robotNamespace>/pepper_robot</robotNamespace>
         <alwaysOn>true</alwaysOn>
         <updateRate>5.0</updateRate>
         <cameraName>camera/front</cameraName>
@@ -2103,7 +2101,6 @@
         </noise>
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
-        <robotNamespace>/pepper_robot</robotNamespace>
         <alwaysOn>true</alwaysOn>
         <updateRate>5.0</updateRate>
         <cameraName>camera/bottom</cameraName>
@@ -2138,7 +2135,7 @@
       <plugin filename="libgazebo_ros_openni_kinect.so" name="CameraDepth_frame_controller">
         <alwaysOn>true</alwaysOn>
         <updateRate>20.0</updateRate>
-        <cameraName>pepper_robot/camera</cameraName>
+        <cameraName>camera</cameraName>
         <imageTopicName>ir/image_raw</imageTopicName>
         <cameraInfoTopicName>depth/camera_info</cameraInfoTopicName>
         <depthImageTopicName>depth/image_raw</depthImageTopicName>
@@ -2259,7 +2256,6 @@
         </range>
       </ray>
       <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
-        <robotNamespace>/pepper_robot</robotNamespace>
         <gaussianNoise>0.05</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>20</updateRate>
@@ -2299,7 +2295,6 @@
         </range>
       </ray>
       <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
-        <robotNamespace>/pepper_robot</robotNamespace>
         <gaussianNoise>0.05</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>20</updateRate>
@@ -2312,13 +2307,13 @@
       </plugin>
     </sensor>
   </gazebo>
+
   <!-- Drive controller -->
-  <gazebo>
+  <!-- <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
-      <!-- <alwaysOn>true</alwaysOn>
+      <alwaysOn>true</alwaysOn>
       <legacyMode>false</legacyMode>
       <updateRate>100</updateRate>
-      <robotNamespace>/</robotNamespace>
       <leftJoint>WheelFL</leftJoint>
       <rightJoint>WheelFR</rightJoint>
       <wheelSeparation>0.170</wheelSeparation>
@@ -2334,21 +2329,21 @@
       <wheelTorque>5</wheelTorque>
       <robotBaseFrame>base_link</robotBaseFrame>
       <publishWheelTF>false</publishWheelTF>
-      <publishWheelJointState>false</publishWheelJointState> -->
-      <alwaysOn>true</alwaysOn>
-      <updateRate>100</updateRate>
-      <robotNamespace>/</robotNamespace>
-      <leftJoint>WheelFL</leftJoint>
-      <rightJoint>WheelFR</rightJoint>
-      <wheelSeparation>0.170</wheelSeparation>
-      <wheelDiameter>0.140</wheelDiameter>
-      <torque>36.9</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom_diffdrive</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <publishWheelJointState>false</publishWheelJointState>
     </plugin>
+  </gazebo> -->
+
+  <!-- Planar drive controller -->
+  <gazebo>
+   <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+     <commandTopic>cmd_vel</commandTopic>
+     <odometryTopic>odom</odometryTopic>
+     <odometryFrame>odom</odometryFrame>
+     <odometryRate>20.0</odometryRate>
+     <robotBaseFrame>base_footprint</robotBaseFrame>
+   </plugin>
   </gazebo>
+
   <!-- HEAD -->
   <transmission name="HeadYaw_Transmission">
     <type>transmission_interface/SimpleTransmission</type>
