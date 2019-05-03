@@ -45,4 +45,5 @@ SOURCES = src/*.cpp \
           src/subscribers/*.cpp \
 
 INCLUDEPATH += include/ \
-               /opt/ros/indigo/include/
+               /home/max/Libs/naoqi-sdk/include \
+               /opt/ros/kinetic/include/

@@ -52,15 +52,36 @@ void TeleopSubscriber::cmd_vel_callback( const geometry_msgs::TwistConstPtr& twi
   p_motion_.async<void>("move", vel_x, vel_y, vel_th );
 }
 
-void TeleopSubscriber::joint_angles_callback( const naoqi_bridge_msgs::JointAnglesWithSpeedConstPtr& js_msg )
-{
-  if ( js_msg->relative==0 )
-  {
-    p_motion_.async<void>("setAngles", js_msg->joint_names, js_msg->joint_angles, js_msg->speed);
+void TeleopSubscriber::joint_angles_callback(
+        const naoqi_bridge_msgs::JointAnglesWithSpeedConstPtr& js_msg) {
+
+  if (js_msg->speeds.size() != 0 && js_msg->relative == 0) {
+    p_motion_.async<void>(
+        "setAngles",
+        js_msg->joint_names,
+        js_msg->joint_angles,
+        js_msg->speeds);
   }
-  else
-  {
-    p_motion_.async<void>("changeAngles", js_msg->joint_names, js_msg->joint_angles, js_msg->speed);
+  else if (js_msg->speeds.size() != 0 && js_msg->relative != 0) {
+    p_motion_.async<void>(
+        "changeAngles",
+        js_msg->joint_names,
+        js_msg->joint_angles,
+        js_msg->speeds);
+  }
+  else if (js_msg->speeds.size() == 0 && js_msg->relative == 0) {
+    p_motion_.async<void>(
+        "setAngles",
+        js_msg->joint_names,
+        js_msg->joint_angles,
+        js_msg->speed);
+  }
+  else {
+    p_motion_.async<void>(
+        "changeAngles",
+        js_msg->joint_names,
+        js_msg->joint_angles,
+        js_msg->speed);
   }
 }
 
