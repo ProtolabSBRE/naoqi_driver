@@ -573,8 +573,8 @@ void Driver::registerDefaultConverter()
 
   size_t camera_depth_resolution;
   bool camera_depth_enabled             = boot_config_.get( "converters.depth_camera.enabled", true);
-  size_t camera_depth_xtion_resolution  = boot_config_.get( "converters.depth_camera.resolution", 1); // QVGA
-  size_t camera_depth_stereo_resolution = boot_config_.get( "converters.depth_camera.resolution", 9); // Q720p
+  size_t camera_depth_xtion_resolution  = boot_config_.get( "converters.depth_camera.xtion_resolution", 1); // QVGA
+  size_t camera_depth_stereo_resolution = boot_config_.get( "converters.depth_camera.stereo_resolution", 9); // Q720p
   size_t camera_depth_fps               = boot_config_.get( "converters.depth_camera.fps", 10);
   size_t camera_depth_recorder_fps      = boot_config_.get( "converters.depth_camera.recorder_fps", 5);
 
