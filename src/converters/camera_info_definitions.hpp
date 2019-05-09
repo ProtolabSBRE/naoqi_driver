@@ -475,7 +475,7 @@ inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQVGA()
 /**
 * STEREO CAMERA
 */
-inline sensor_msgs::CameraInfo createCameraInfoStereoDepth(
+inline sensor_msgs::CameraInfo createCameraInfoStereo(
         const int &width,
         const int &height,
         const float &reductionFactor) {
@@ -528,59 +528,54 @@ inline sensor_msgs::CameraInfo createCameraInfoStereoDepth(
 
 inline sensor_msgs::CameraInfo createCameraInfoDEPTH720P()
 {
-  return createCameraInfoStereoDepth(1280, 720, 1.0);
+  return createCameraInfoStereo(1280, 720, 1.0);
 }
 
 
 inline sensor_msgs::CameraInfo createCameraInfoDEPTHQ720P()
 {
-  return createCameraInfoStereoDepth(640, 360, 2.0);
+  return createCameraInfoStereo(640, 360, 2.0);
 }
 
 inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQ720P()
 {
-  return createCameraInfoStereoDepth(320, 180, 4.0);
+  return createCameraInfoStereo(320, 180, 4.0);
 }
 
 inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQ720P()
 {
-  return createCameraInfoStereoDepth(160, 90, 8.0);
+  return createCameraInfoStereo(160, 90, 8.0);
 }
 
 inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQQ720P()
 {
-  return createCameraInfoStereoDepth(80, 45, 16.0);
+  return createCameraInfoStereo(80, 45, 16.0);
 }
 
 // Complete methods for stereo image parameteres
-inline sensor_msgs::CameraInfo createCameraInfoDEPTH720PX2()
+inline sensor_msgs::CameraInfo createCameraInfoStereo720PX2()
 {
-  sensor_msgs::CameraInfo cam_info_msg;
-  return cam_info_msg;
+  return createCameraInfoStereo(2560, 720, 1.0);
 }
 
-inline sensor_msgs::CameraInfo createCameraInfoDEPTHQ720PX2()
+inline sensor_msgs::CameraInfo createCameraInfoStereoQ720PX2()
 {
-    sensor_msgs::CameraInfo cam_info_msg;
-    return cam_info_msg;
+    return createCameraInfoStereo(1280, 360, 2.0);
 }
 
-inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQ720PX2()
+inline sensor_msgs::CameraInfo createCameraInfoStereoQQ720PX2()
 {
-    sensor_msgs::CameraInfo cam_info_msg;
-    return cam_info_msg;
+    return createCameraInfoStereo(640, 180, 4.0);
 }
 
-inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQ720PX2()
+inline sensor_msgs::CameraInfo createCameraInfoStereoQQQ720PX2()
 {
-    sensor_msgs::CameraInfo cam_info_msg;
-    return cam_info_msg;
+    return createCameraInfoStereo(320, 90, 8.0);
 }
 
-inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQQQ720PX2()
+inline sensor_msgs::CameraInfo createCameraInfoStereoQQQQ720PX2()
 {
-    sensor_msgs::CameraInfo cam_info_msg;
-    return cam_info_msg;
+    return createCameraInfoStereo(160, 45, 16.0);
 }
 
 
