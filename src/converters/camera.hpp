@@ -41,12 +41,12 @@ class CameraConverter : public BaseConverter<CameraConverter>
 
 public:
   CameraConverter(
-          const std::string& name,
-          const float& frequency,
-          const qi::SessionPtr& session,
-          const int& camera_source,
-          const int& resolution,
-          const bool &bStereoDepth=false);
+    const std::string& name,
+    const float& frequency,
+    const qi::SessionPtr& session,
+    const int& camera_source,
+    const int& resolution,
+    const bool& has_stereo=false);
 
   ~CameraConverter();
 

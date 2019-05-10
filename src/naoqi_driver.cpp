@@ -716,14 +716,13 @@ void Driver::registerDefaultConverter()
     {
       boost::shared_ptr<publisher::CameraPublisher> dcp = boost::make_shared<publisher::CameraPublisher>( "camera/depth/image_raw", AL::kDepthCamera );
       boost::shared_ptr<recorder::CameraRecorder> dcr = boost::make_shared<recorder::CameraRecorder>( "camera/depth", camera_depth_recorder_fps );
-
       boost::shared_ptr<converter::CameraConverter> dcc = boost::make_shared<converter::CameraConverter>(
-                  "depth_camera",
-                  camera_depth_fps,
-                  sessionPtr_,
-                  AL::kDepthCamera,
-                  camera_depth_resolution,
-                  this->has_stereo);
+        "depth_camera",
+        camera_depth_fps,
+        sessionPtr_,
+        AL::kDepthCamera,
+        camera_depth_resolution,
+        this->has_stereo);
 
       dcc->registerCallback( message_actions::PUBLISH, boost::bind(&publisher::CameraPublisher::publish, dcp, _1, _2) );
       dcc->registerCallback( message_actions::RECORD, boost::bind(&recorder::CameraRecorder::write, dcr, _1, _2) );
@@ -732,17 +731,18 @@ void Driver::registerDefaultConverter()
     }
 
     /** Stereo Camera */
-    if (this->has_stereo && camera_stereo_enabled) {
+    if (this->has_stereo && camera_stereo_enabled)
+    {
       boost::shared_ptr<publisher::CameraPublisher> scp = boost::make_shared<publisher::CameraPublisher>( "camera/stereo/image_raw", AL::kInfraredOrStereoCamera );
       boost::shared_ptr<recorder::CameraRecorder> scr = boost::make_shared<recorder::CameraRecorder>( "camera/stereo", camera_stereo_recorder_fps );
 
       boost::shared_ptr<converter::CameraConverter> scc = boost::make_shared<converter::CameraConverter>(
-                  "stereo_camera",
-                  camera_stereo_fps,
-                  sessionPtr_,
-                  AL::kInfraredOrStereoCamera,
-                  camera_stereo_resolution,
-                  this->has_stereo);
+        "stereo_camera",
+        camera_stereo_fps,
+        sessionPtr_,
+        AL::kInfraredOrStereoCamera,
+        camera_stereo_resolution,
+        this->has_stereo);
 
       scc->registerCallback( message_actions::PUBLISH, boost::bind(&publisher::CameraPublisher::publish, scp, _1, _2) );
       scc->registerCallback( message_actions::RECORD, boost::bind(&recorder::CameraRecorder::write, scr, _1, _2) );
