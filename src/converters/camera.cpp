@@ -226,25 +226,6 @@ CameraConverter::CameraConverter(
       camera_info_ = camera_info_definitions::getCameraInfo(camera_source_, resolution_);
       break;
   }
-  else if (camera_source == AL::kBottomCamera )
-  {
-    msg_frameid_ = "CameraBottom_optical_frame";
-  }
-  else if (camera_source_ == AL::kDepthCamera )
-  {
-    msg_frameid_ = "CameraDepth_optical_frame";
-  }
-  // Overwrite the parameters for the infrared
-  else if (camera_source_ == AL::kInfraredCamera )
-  {
-    // Reset to kDepth since it's the same device handle
-    camera_source_ = AL::kDepthCamera;
-    msg_frameid_ = "CameraDepth_optical_frame";
-    colorspace_ = AL::kInfraredColorSpace;
-    msg_colorspace_ = "16UC1";
-    cv_mat_type_ = CV_16U;
-    camera_info_ = camera_info_definitions::getCameraInfo(camera_source_, resolution_);
-  }
 }
 
 CameraConverter::~CameraConverter()
