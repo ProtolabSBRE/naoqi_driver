@@ -470,8 +470,6 @@ inline sensor_msgs::CameraInfo createCameraInfoDEPTHQQVGA()
   return cam_info_msg;
 }
 
-
-
 /**
 * STEREO CAMERA
 */
@@ -577,7 +575,6 @@ inline sensor_msgs::CameraInfo createCameraInfoStereoQQQQ720PX2()
 {
     return createCameraInfoStereo(160, 45, 16.0);
 }
-
 
 } // camera_info_definitions
 } //publisher

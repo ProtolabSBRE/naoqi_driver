@@ -181,13 +181,12 @@ const sensor_msgs::CameraInfo& getCameraInfo( int camera_source, int resolution 
 } // camera_info_definitions
 
 CameraConverter::CameraConverter(
-        const std::string& name,
-        const float& frequency,
-        const qi::SessionPtr& session,
-        const int& camera_source,
-        const int& resolution,
-        const bool &bHasStereo)
-    : BaseConverter( name, frequency, session ),
+  const std::string& name,
+  const float& frequency,
+  const qi::SessionPtr& session,
+  const int& camera_source,
+  const int& resolution,
+  const bool& has_stereo) : BaseConverter( name, frequency, session ),
     p_video_( session->service("ALVideoDevice") ),
     camera_source_(camera_source),
     resolution_(resolution),
@@ -209,7 +208,7 @@ CameraConverter::CameraConverter(
     case AL::kDepthCamera:
       msg_frameid_ = "CameraDepth_optical_frame";
 
-      if (bHasStereo)
+      if (has_stereo)
         colorspace_ = AL::kDepthColorSpace;
 
       break;
@@ -217,7 +216,7 @@ CameraConverter::CameraConverter(
     case AL::kInfraredOrStereoCamera:
       msg_frameid_ = "CameraDepth_optical_frame";
 
-      if (!bHasStereo) {
+      if (!has_stereo) {
         camera_source_ = AL::kDepthCamera;
         colorspace_ = AL::kInfraredColorSpace;
         msg_colorspace_ = "16UC1";
@@ -227,8 +226,25 @@ CameraConverter::CameraConverter(
       camera_info_ = camera_info_definitions::getCameraInfo(camera_source_, resolution_);
       break;
   }
-
-
+  else if (camera_source == AL::kBottomCamera )
+  {
+    msg_frameid_ = "CameraBottom_optical_frame";
+  }
+  else if (camera_source_ == AL::kDepthCamera )
+  {
+    msg_frameid_ = "CameraDepth_optical_frame";
+  }
+  // Overwrite the parameters for the infrared
+  else if (camera_source_ == AL::kInfraredCamera )
+  {
+    // Reset to kDepth since it's the same device handle
+    camera_source_ = AL::kDepthCamera;
+    msg_frameid_ = "CameraDepth_optical_frame";
+    colorspace_ = AL::kInfraredColorSpace;
+    msg_colorspace_ = "16UC1";
+    cv_mat_type_ = CV_16U;
+    camera_info_ = camera_info_definitions::getCameraInfo(camera_source_, resolution_);
+  }
 }
 
 CameraConverter::~CameraConverter()
