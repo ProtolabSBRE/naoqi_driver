@@ -25,6 +25,9 @@ find_package(catkin COMPONENTS
 find_package(OpenCV)
 find_package(orocos_kdl)
 
+find_package(BZip2 REQUIRED)
+add_definitions(${BZIP2_DEFINITIONS})
+
 add_definitions(-DLIBQI_VERSION=${naoqi_libqi_VERSION_MAJOR}${naoqi_libqi_VERSION_MINOR})
 
 catkin_package(LIBRARIES naoqi_driver_module naoqi_driver)
@@ -33,7 +36,7 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=deprecated-declarations")
 endif()
 
-include_directories( include ${catkin_INCLUDE_DIRS})
+include_directories( include ${catkin_INCLUDE_DIRS} ${BZIP2_INCLUDE_DIR})
 
 # create the different libraries
 add_library(
