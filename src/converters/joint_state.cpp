@@ -76,6 +76,8 @@ void JointStateConverter::reset()
   }
   // pre-fill joint states message
   msg_joint_states_.name = p_motion_.call<std::vector<std::string> >("getBodyNames", "Body" );
+  msg_joint_states_.name.push_back("RGripper");
+  msg_joint_states_.name.push_back("LGripper");
 }
 
 void JointStateConverter::registerCallback( const message_actions::MessageAction action, Callback_t cb )
@@ -96,6 +98,8 @@ void JointStateConverter::callAll( const std::vector<message_actions::MessageAct
 
   // STUPID CONVERTION FROM FLOAT TO DOUBLE ARRAY --> OPTIMIZE THAT!
   msg_joint_states_.position = std::vector<double>( al_joint_angles.begin(), al_joint_angles.end() );
+  msg_joint_states_.position.push_back(0.0);
+  msg_joint_states_.position.push_back(0.0);
 
   /**
    * ROBOT STATE PUBLISHER
