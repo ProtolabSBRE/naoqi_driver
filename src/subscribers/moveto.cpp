@@ -54,13 +54,23 @@ void MovetoSubscriber::reset( ros::NodeHandle& nh )
 void MovetoSubscriber::callback(
         const naoqi_bridge_msgs::PoseStampedWithSpeedConstPtr &msg) {
 
-    std::vector<std::pair<std::string, float> > moveConfig;
     float speed;
+    int reference_frame = -1;
+    std::vector<std::pair<std::string, float> > moveConfig;
 
     speed = msg->speed_percentage * 0.45 + 0.1;
     moveConfig.push_back(std::make_pair("MaxVelXY", speed));
 
-    if (msg->referenceFrame == 1) {
+    if (msg->referenceFrame != 1 && msg->referenceFrame != 2) {
+        if (msg->pose_stamped.header.frame_id == "odom")
+            reference_frame = 1;
+        else if (msg->pose_stamped.header.frame_id == "base_footprint")
+            reference_frame = 2;
+    }
+    else
+        reference_frame = msg->referenceFrame;
+
+    if (reference_frame == 1) {
         geometry_msgs::PoseStamped pose_msg_bf;
 
         bool canTransform = tf2_buffer_->canTransform(
@@ -118,14 +128,14 @@ void MovetoSubscriber::callback(
         }
     }
 
-    else {
+    else if (reference_frame == 2) {
         double yaw = helpers::transform::getYaw(msg->pose_stamped.pose);
 
         std::cout << "going to move x: "
                   <<  msg->pose_stamped.pose.position.x
-                   << " y: " << msg->pose_stamped.pose.position.y
-                   << " z: " << msg->pose_stamped.pose.position.z
-                   << " yaw: " << yaw << std::endl;
+                  << " y: " << msg->pose_stamped.pose.position.y
+                  << " z: " << msg->pose_stamped.pose.position.z
+                  << " yaw: " << yaw << std::endl;
 
         p_motion_.async<void>("moveTo",
                               msg->pose_stamped.pose.position.x,
@@ -133,6 +143,12 @@ void MovetoSubscriber::callback(
                               yaw,
                               qi::AnyValue::from(moveConfig));
     }
+
+    else
+        std::cout << "Incorrect reference frame, use a valid integer for "
+                  << "referenceFrame or a valid frame id for " 
+                  << "pose_stamped.header.frame_id"
+                  << std::endl;
 }
 
 } //publisher
