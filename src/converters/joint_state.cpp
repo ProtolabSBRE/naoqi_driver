@@ -43,6 +43,7 @@ namespace converter
 JointStateConverter::JointStateConverter( const std::string& name, const float& frequency, const BufferPtr& tf2_buffer, const qi::SessionPtr& session ):
   BaseConverter( name, frequency, session ),
   p_motion_( session->service("ALMotion") ),
+  p_memory_( session->service("ALMemory") ),
   tf2_buffer_(tf2_buffer)
 {
   robot_desc_ = tools::getRobotDescription( robot_ );
@@ -69,7 +70,7 @@ void JointStateConverter::reset()
 
   // set mimic joint list
   mimic_.clear();
-  for(std::map< std::string, boost::shared_ptr< urdf::Joint > >::iterator i = model.joints_.begin(); i != model.joints_.end(); i++){
+  for(std::map< std::string, urdf::JointSharedPtr >::iterator i = model.joints_.begin(); i != model.joints_.end(); i++){
     if(i->second->mimic){
       mimic_.insert(make_pair(i->first, i->second->mimic));
     }
@@ -89,6 +90,9 @@ void JointStateConverter::callAll( const std::vector<message_actions::MessageAct
 {
   // get joint state values
   std::vector<double> al_joint_angles = p_motion_.call<std::vector<double> >("getAngles", "Body", true );
+  std::vector<double> al_joint_velocities;
+  std::vector<double> al_joint_torques;
+
   const ros::Time& stamp = ros::Time::now();
 
   /**
@@ -116,7 +120,25 @@ void JointStateConverter::callAll( const std::vector<message_actions::MessageAct
       ++itName, ++itPos)
   {
     joint_state_map[*itName] = *itPos;
+
+    try {
+      al_joint_velocities.push_back(p_memory_.call<double>(
+        "getData",
+        "Motion/Velocity/Sensor/" + (*itName)));
+
+      al_joint_torques.push_back(p_memory_.call<double>(
+        "getData",
+        "Motion/Torque/Sensor/" + (*itName)));
+
+    } catch (qi::FutureUserException e) {
+        // Sets the velocity and torques field to nan if no info is provided
+        al_joint_velocities.push_back(std::numeric_limits<double>::quiet_NaN());
+        al_joint_torques.push_back(std::numeric_limits<double>::quiet_NaN());
+    }
   }
+
+  msg_joint_states_.velocity = al_joint_velocities;
+  msg_joint_states_.effort = al_joint_torques;
 
   // for mimic map
   for(MimicMap::iterator i = mimic_.begin(); i != mimic_.end(); i++){
