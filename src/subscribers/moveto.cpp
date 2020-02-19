@@ -109,6 +109,11 @@ void MovetoSubscriber::callback(
                      << yaw
                      << std::endl;
 
+            if (std::isnan(yaw)) {
+              yaw = 0.0;
+              std::cout << "Yaw is nan, changed to 0.0" << std::endl;
+            }
+
             p_motion_.async<void>("moveTo",
                                   pose_msg_bf.pose.position.x,
                                   pose_msg_bf.pose.position.y,
@@ -136,6 +141,11 @@ void MovetoSubscriber::callback(
                   << " y: " << msg->pose_stamped.pose.position.y
                   << " z: " << msg->pose_stamped.pose.position.z
                   << " yaw: " << yaw << std::endl;
+
+        if (std::isnan(yaw)) {
+          yaw = 0.0;
+          std::cout << "Yaw is nan, changed to 0.0" << std::endl;
+        }
 
         p_motion_.async<void>("moveTo",
                               msg->pose_stamped.pose.position.x,
